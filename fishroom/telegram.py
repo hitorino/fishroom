@@ -667,7 +667,7 @@ class Telegram(BaseBotInstance):
         self._must_post(api, json=data)
 
     def msg_tmpl(self, sender=None):
-        return "{content}" if sender is None else "<b>[{sender}]</b> {content}"
+        return "{content}" if sender is None else "<b>{sender}</b>\n{content}"
 
     @classmethod
     def formatRichText(cls, rich_text: RichText, escape=True):
@@ -712,7 +712,7 @@ def init():
             options = config['photo_store']['options']
             return Imgur(**options)
         elif provider == "vim-cn":
-            return VimCN()
+            return VimCN(**config['photo_store']['options'])
         elif provider == "qiniu":
             return get_qiniu(redis_client, config)
 

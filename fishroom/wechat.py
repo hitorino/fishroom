@@ -247,7 +247,7 @@ def init():
         options = config['photo_store']['options']
         photo_store = Imgur(**options)
     elif provider == "vim-cn":
-        photo_store = VimCN()
+        photo_store = VimCN(**config['photo_store']['options'])
     elif provider == "qiniu":
         photo_store = get_qiniu(redis_client, config)
 

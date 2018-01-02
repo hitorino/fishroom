@@ -5,6 +5,7 @@ import requests
 import requests.exceptions
 from base64 import b64encode
 from .helpers import get_logger
+import shutil,os
 
 
 logger = get_logger(__name__)
@@ -15,6 +16,13 @@ class BasePhotoStore(object):
     def upload_image(self, filename, **kwargs):
         raise Exception("Not Implemented")
 
+class LocalPhotoStore(object):
+    def __init__(self, path, **kwargs):
+        self.path = path
+
+    def upload_image(self, filename=None, filedata=None, **kwargs):
+        if filedata is None:
+            shutil.copy2(filename, os.path.join(path, os.path.dirname(filename)))
 
 class Imgur(BasePhotoStore):
 
@@ -64,10 +72,8 @@ class Imgur(BasePhotoStore):
 
 class VimCN(BasePhotoStore):
 
-    url = "https://img.vim-cn.com/"
-
-    def __init__(self, **kwargs):
-        pass
+    def __init__(self, url="https://img.vim-cn.com/", **kwargs):
+        self.url = url
 
     def upload_image(self, filename=None, filedata=None, **kwargs) -> str:
         if filedata is None:

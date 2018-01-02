@@ -1,3 +1,5 @@
 /fishroom/config.py
 /test/config.py
 config.py.production
+**/__pycache__
+**/*.py[cod]

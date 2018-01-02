@@ -16,6 +16,7 @@ class ChannelType(object):
     Wechat = "wechat"
     Web = "web"
     API = "api"
+    DiscourseBabble = "babble"
 
 
 class MessageType(object):
