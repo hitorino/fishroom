@@ -132,7 +132,7 @@ class DiscourseBabbleHandle(BaseBotInstance):
             reply_quote = "[b]{reply_to}[/b]<br/>{reply_text}".format(reply_text=reply_text.strip(), reply_to=reply_to)
 
         channel = raw.channel.capitalize()
-        channel = xss.replace(channel, [[r'[Ii][Rr][Cc]',r'IRC'],['Babble',r'hitorino\\*']])
+        channel = xss.replace(channel, [[r'[Ii][Rr][Cc]',r'IRC'],['Babble','hitorino']])
         msg = self.rich_message(content, sender=sender, color=color,
                                 reply_quote=reply_quote, channel=channel)
         msg = self.formatRichText(msg)
