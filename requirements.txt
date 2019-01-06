@@ -1,6 +1,6 @@
 pytz
 redis
-marshmallow==2.1.0
+marshmallow>=2.15.1
 tornado==4.5.2
 tornado-redis
 irc
