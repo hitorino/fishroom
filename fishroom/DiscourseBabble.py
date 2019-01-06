@@ -137,9 +137,11 @@ class DiscourseBabbleHandle(BaseBotInstance):
             if len(reply_text) > 8:
                 reply_text = reply_text[:8] + '...'
             reply_quote = "[b]{reply_to}[/b]<br/>{reply_text}".format(reply_text=reply_text.strip(), reply_to=reply_to)
-
-        channel = raw.channel.capitalize()
-        channel = xss.replace(channel, [[r'[Ii][Rr][Cc]',r'IRC'],['Babble','hitorino']])
+        try:
+            channel = raw.channel.capitalize()
+            channel = xss.replace(channel, [[r'[Ii][Rr][Cc]',r'IRC'],['Babble','hitorino']])
+        except AttributeError:
+            channel = None
         msg = self.rich_message(content, sender=sender, color=color,
                                 reply_quote=reply_quote, channel=channel)
         msg = self.formatRichText(msg)
