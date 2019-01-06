@@ -23,7 +23,7 @@ class MatrixHandle(BaseBotInstance):
         self.viewer_url = server.strip('/') + "/_matrix/media/v1/download/"
 
         try:
-            client.login_with_password(username, password)
+            client.login(username, password, sync=False)
         except MatrixRequestError as e:
             if e.code == 403:
                 logger.error("403 Bad username or password.")
