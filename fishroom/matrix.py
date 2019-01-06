@@ -121,7 +121,9 @@ class MatrixHandle(BaseBotInstance):
         raise NotImplementedError()
 
     def listen_message_stream(self):
-        self.client.start_listener_thread()
+        def print_exception(ex):
+            logger.error(repr(ex))
+        self.client.start_listener_thread(exception_handler=print_exception)
 
     def send_msg(self, target, content, sender=None, first=False, **kwargs):
         target_room = self.joined_rooms[target]
