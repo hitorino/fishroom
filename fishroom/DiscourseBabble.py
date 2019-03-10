@@ -47,7 +47,7 @@ def getWebhookHandler(dbh):
             json = tornado.escape.json_decode(self.request.body)
             post = json.get('post', None)
             if post:
-                topic_id = post.get('id', 0)
+                topic_id = post.get('topic_id', 0)
                 current_user = post.get('username', '未知用户')
                 message = post.get('cooked', '未知消息')
                 dbh.on_sendmessage(topic_id, current_user, message)
